@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-09-06",
   "compatibility_flags": [
-    "nodejs_compat"
+    "nodejs_compat_v2"
   ],
   "observability": {
     "enabled": true
@@ -15,8 +15,7 @@
   "workers_dev": true,
   "upload_source_maps": true,
   "vars": {
-    "ENVIRONMENT": "development",
-    "TURBO_CACHE_TOKEN": "<PLACEHOLDER>"
+    "ENVIRONMENT": "development"
   },
   "routes": [
     {
@@ -40,8 +39,7 @@
     "staging": {
       "name": "turbo-remote-cache-staging",
       "vars": {
-        "ENVIRONMENT": "staging",
-        "TURBO_CACHE_TOKEN": "<PLACEHOLDER>"
+        "ENVIRONMENT": "staging"
       },
       "routes": [
         {
@@ -65,8 +63,7 @@
     "production": {
       "name": "turbo-remote-cache-production",
       "vars": {
-        "ENVIRONMENT": "production",
-        "TURBO_CACHE_TOKEN": "<PLACEHOLDER>"
+        "ENVIRONMENT": "production"
       },
       "routes": [
         {
