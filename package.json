@@ -1,9 +1,15 @@
 {
-  "name": "vnp-turbo-cache",
+  "name": "turbo-remote-cache",
   "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "scripts": {
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "check-types": "tsc --noEmit",
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
@@ -11,16 +17,13 @@
     "start": "wrangler dev",
     "cf-typegen": "wrangler types --include-env=false"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "hono": "^4.11.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260120.0",
     "@types/node": "^25.0.10",
+    "oxfmt": "^0.36.0",
     "oxlint": "^1.51.0",
     "typescript": "5.9.3",
     "wrangler": "^4.69.0"

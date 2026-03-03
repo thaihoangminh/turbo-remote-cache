@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": ["worker-configuration.d.ts", "wrangler.jsonc"],
+  "singleQuote": true,
+  "semi": false,
+  "printWidth": 100
+}

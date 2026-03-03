@@ -3,8 +3,7 @@
   "include": [
     "${configDir}/worker-configuration.d.ts",
     "${configDir}/env.d.ts",
-    "${configDir}/**/*.ts",
-    "${configDir}/**/*.tsx"
+    "${configDir}/**/*.ts"
   ],
   "exclude": ["${configDir}/node_modules/", "${configDir}/dist/", "${configDir}/eslint.config.ts"],
   "compilerOptions": {
