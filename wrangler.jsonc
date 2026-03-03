@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "vnp-turbo-cache",
+  "name": "turbo-remote-cache",
   "main": "src/index.ts",
   "compatibility_date": "2025-09-06",
   "compatibility_flags": [
@@ -15,73 +15,75 @@
   "workers_dev": true,
   "upload_source_maps": true,
   "vars": {
-    "ENVIRONMENT": "development"
+    "ENVIRONMENT": "development",
+    "TURBO_CACHE_TOKEN": "<PLACEHOLDER>"
   },
   "routes": [
     {
-      "pattern": "dev.turbo-cache.vnpromo.com",
+      "pattern": "dev.turbo-cache.thaihoang.dev",
       "custom_domain": true
     }
   ],
   "r2_buckets": [
     {
-      "bucket_name": "vnpromo-turbo-cache-staging",
-      "binding": "TURBO_CACHE_BUCKET",
-      "remote": true
+      "bucket_name": "turbo-remote-cache-staging",
+      "binding": "TURBO_CACHE_BUCKET"
     }
   ],
   "analytics_engine_datasets": [
     {
-      "binding": "TURBO_CACHE_ANALYTICS",
-      "dataset": "vnpromo-turbo-cache-events-staging"
+      "dataset": "turbo-remote-cache-events-staging",
+      "binding": "TURBO_CACHE_ANALYTICS"
     }
   ],
   "env": {
     "staging": {
-      "name": "vnp-turbo-cache-staging",
+      "name": "turbo-remote-cache-staging",
       "vars": {
-        "ENVIRONMENT": "staging"
+        "ENVIRONMENT": "staging",
+        "TURBO_CACHE_TOKEN": "<PLACEHOLDER>"
       },
       "routes": [
         {
-          "pattern": "staging.turbo-cache.vnpromo.com",
+          "pattern": "staging.turbo-cache.thaihoang.dev",
           "custom_domain": true
         }
       ],
       "r2_buckets": [
         {
-          "bucket_name": "vnpromo-turbo-cache-staging",
+          "bucket_name": "turbo-remote-cache-staging",
           "binding": "TURBO_CACHE_BUCKET"
         }
       ],
       "analytics_engine_datasets": [
         {
-          "binding": "TURBO_CACHE_ANALYTICS",
-          "dataset": "vnpromo-turbo-cache-events-staging"
+          "dataset": "turbo-remote-cache-events-staging",
+          "binding": "TURBO_CACHE_ANALYTICS"
         }
       ]
     },
     "production": {
-      "name": "vnp-turbo-cache-production",
+      "name": "turbo-remote-cache-production",
       "vars": {
-        "ENVIRONMENT": "production"
+        "ENVIRONMENT": "production",
+        "TURBO_CACHE_TOKEN": "<PLACEHOLDER>"
       },
       "routes": [
         {
-          "pattern": "turbo-cache.vnpromo.com",
+          "pattern": "turbo-cache.thaihoang.dev",
           "custom_domain": true
         }
       ],
       "r2_buckets": [
         {
-          "bucket_name": "vnpromo-turbo-cache-production",
+          "bucket_name": "turbo-remote-cache-production",
           "binding": "TURBO_CACHE_BUCKET"
         }
       ],
       "analytics_engine_datasets": [
         {
           "binding": "TURBO_CACHE_ANALYTICS",
-          "dataset": "vnpromo-turbo-cache-events-production"
+          "dataset": "turbo-remote-cache-events-production"
         }
       ]
     }
