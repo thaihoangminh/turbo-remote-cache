@@ -102,9 +102,6 @@ pnpm deploy:staging
 pnpm deploy:production
 ```
 
-> [!IMPORTANT]
-> Update the `TURBO_CACHE_TOKEN` value in `wrangler.jsonc` for each environment before deploying. The default value is `<PLACEHOLDER>`.
-
 ## Using with Turborepo
 
 ### 1. Configure environment variables
