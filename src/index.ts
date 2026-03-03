@@ -78,7 +78,7 @@ app.use('*', async (context, next) => {
         code: 'missing_token',
         message: 'Remote cache token is not configured.',
       },
-      500,
+      503,
     )
   }
 
