@@ -1,5 +1,6 @@
 import type { Context } from 'hono'
 import { Hono } from 'hono'
+import { extractBearerToken, verifyBearerToken } from "./lib/utils";
 
 const HASH_PATTERN = /^[a-fA-F0-9]+$/
 const DEFAULT_SCOPE = 'default'
@@ -82,12 +83,11 @@ app.use('*', async (context, next) => {
     )
   }
 
-  if (!authHeader?.startsWith('Bearer ')) {
+  if (!extractBearerToken(authHeader)) {
     return jsonUnauthorized(context, 'Missing bearer token.')
   }
 
-  const token = authHeader.slice('Bearer '.length).trim()
-  if (token !== expected) {
+  if (!verifyBearerToken(expected, authHeader)) {
     return jsonForbidden(context, 'Invalid bearer token.')
   }
 

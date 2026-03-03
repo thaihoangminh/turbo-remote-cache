@@ -74,19 +74,19 @@ The Worker runs at `http://localhost:8787`.
 
 The Worker uses `wrangler.jsonc` for configuration with three environments:
 
-| Environment | Domain | R2 Bucket | Analytics Dataset |
-|-------------|--------|-----------|-------------------|
-| Development | `dev.turbo-cache.example.com` | `turbo-remote-cache-staging` | `turbo-remote-cache-events-staging` |
-| Staging | `staging.turbo-cache.example.com` | `turbo-remote-cache-staging` | `turbo-remote-cache-events-staging` |
-| Production | `turbo-cache.example.com` | `turbo-remote-cache-production` | `turbo-remote-cache-events-production` |
+| Environment | Domain                            | R2 Bucket                       | Analytics Dataset                      |
+| ----------- | --------------------------------- | ------------------------------- | -------------------------------------- |
+| Development | `dev.turbo-cache.example.com`     | `turbo-remote-cache-staging`    | `turbo-remote-cache-events-staging`    |
+| Staging     | `staging.turbo-cache.example.com` | `turbo-remote-cache-staging`    | `turbo-remote-cache-events-staging`    |
+| Production  | `turbo-cache.example.com`         | `turbo-remote-cache-production` | `turbo-remote-cache-events-production` |
 
 ### Required Bindings
 
-| Binding | Type | Description |
-|---------|------|-------------|
-| `TURBO_CACHE_BUCKET` | R2 Bucket | Storage for cache artifacts |
-| `TURBO_CACHE_ANALYTICS` | Analytics Engine | Dataset for cache event tracking |
-| `TURBO_CACHE_TOKEN` | Environment Variable | Bearer token for authentication |
+| Binding                 | Type                 | Description                      |
+| ----------------------- | -------------------- | -------------------------------- |
+| `TURBO_CACHE_BUCKET`    | R2 Bucket            | Storage for cache artifacts      |
+| `TURBO_CACHE_ANALYTICS` | Analytics Engine     | Dataset for cache event tracking |
+| `TURBO_CACHE_TOKEN`     | Environment Variable | Bearer token for authentication  |
 
 ### Deploying to Cloudflare
 
@@ -139,11 +139,11 @@ Turborepo automatically uses the remote cache for subsequent runs.
 
 Artifacts are stored with scoped keys to support multi-team or multi-project setups:
 
-| Query Parameter | Key Format | Example |
-|-----------------|------------|---------|
-| `teamId` | `team-{teamId}/{hash}` | `team-core/abc123...` |
-| `slug` | `slug-{slug}/{hash}` | `slug-myapp/abc123...` |
-| (none) | `default/{hash}` | `default/abc123...` |
+| Query Parameter | Key Format             | Example                |
+| --------------- | ---------------------- | ---------------------- |
+| `teamId`        | `team-{teamId}/{hash}` | `team-core/abc123...`  |
+| `slug`          | `slug-{slug}/{hash}`   | `slug-myapp/abc123...` |
+| (none)          | `default/{hash}`       | `default/abc123...`    |
 
 Use the same scope parameters consistently across all API calls.
 
@@ -257,28 +257,28 @@ Errors return JSON with a `code` and `message`:
 }
 ```
 
-| Code | HTTP Status | Description |
-|------|-------------|-------------|
-| `missing_token` | 503 | Worker token not configured |
-| `unauthorized` | 401 | Missing or invalid bearer token |
-| `forbidden` | 403 | Token mismatch |
-| `bad_request` | 400 | Invalid request parameters |
-| `artifact_not_found` | 404 | Artifact does not exist |
+| Code                 | HTTP Status | Description                     |
+| -------------------- | ----------- | ------------------------------- |
+| `missing_token`      | 503         | Worker token not configured     |
+| `unauthorized`       | 401         | Missing or invalid bearer token |
+| `forbidden`          | 403         | Token mismatch                  |
+| `bad_request`        | 400         | Invalid request parameters      |
+| `artifact_not_found` | 404         | Artifact does not exist         |
 
 ## Development
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start local development server |
-| `pnpm deploy:staging` | Deploy to staging environment |
+| Command                  | Description                      |
+| ------------------------ | -------------------------------- |
+| `pnpm dev`               | Start local development server   |
+| `pnpm deploy:staging`    | Deploy to staging environment    |
 | `pnpm deploy:production` | Deploy to production environment |
-| `pnpm lint` | Run linter (oxlint) |
-| `pnpm lint:fix` | Fix linting issues |
-| `pnpm fmt` | Format code (oxfmt) |
-| `pnpm check-types` | Run TypeScript type checking |
-| `pnpm cf-typegen` | Generate Cloudflare types |
+| `pnpm lint`              | Run linter (oxlint)              |
+| `pnpm lint:fix`          | Fix linting issues               |
+| `pnpm fmt`               | Format code (oxfmt)              |
+| `pnpm check-types`       | Run TypeScript type checking     |
+| `pnpm cf-typegen`        | Generate Cloudflare types        |
 
 ### Project Structure
 
@@ -296,14 +296,14 @@ Errors return JSON with a `code` and `message`:
 
 Cache events sent to `/v8/artifacts/events` are stored in Analytics Engine with these fields:
 
-| Field | Description |
-|-------|-------------|
-| `index1` | Session ID |
-| `index2` | Source (`LOCAL` or `REMOTE`) |
-| `index3` | Event type (`HIT` or `MISS`) |
-| `index4` | Scope (team/slug identifier) |
-| `double1` | Duration in milliseconds |
-| `blob1` | Artifact hash |
+| Field     | Description                  |
+| --------- | ---------------------------- |
+| `index1`  | Session ID                   |
+| `index2`  | Source (`LOCAL` or `REMOTE`) |
+| `index3`  | Event type (`HIT` or `MISS`) |
+| `index4`  | Scope (team/slug identifier) |
+| `double1` | Duration in milliseconds     |
+| `blob1`   | Artifact hash                |
 
 Query these events in the Cloudflare dashboard to analyze cache hit rates and performance.
 
