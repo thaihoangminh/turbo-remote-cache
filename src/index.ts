@@ -6,6 +6,7 @@ const HASH_PATTERN = /^[a-fA-F0-9]+$/
 const DEFAULT_SCOPE = 'default'
 
 type Bindings = {
+  ENVIRONMENT: 'development' | 'staging' | 'production'
   TURBO_CACHE_TOKEN: string
   TURBO_CACHE_BUCKET: R2Bucket
   TURBO_CACHE_ANALYTICS: AnalyticsEngineDataset
@@ -97,6 +98,12 @@ app.use('*', async (context, next) => {
 app.get('/artifacts/status', (context) => {
   return context.json({ status: 'enabled' })
 })
+
+app.get('/health', (c) => c.json({
+  status: 'healthy',
+  timestamp: new Date().toISOString(),
+  environment: c.env.ENVIRONMENT
+}))
 
 app.on('HEAD', '/artifacts/:hash', async (context) => {
   const hash = context.req.param('hash')
