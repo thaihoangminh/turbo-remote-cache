@@ -47,11 +47,7 @@ type ErrorResponse = {
 
 const app = new Hono<{ Bindings: Bindings }>().basePath('/v8')
 
-const jsonError = (
-  context: HonoContext,
-  body: ErrorResponse,
-  status: number,
-) => {
+const jsonError = (context: HonoContext, body: ErrorResponse, status: number) => {
   return context.json(body, status as never)
 }
 
@@ -203,10 +199,7 @@ app.post('/artifacts', async (context) => {
   const hashes = payload?.hashes
 
   if (!Array.isArray(hashes)) {
-    return jsonBadRequest(
-      context,
-      'hashes must be an array of artifact hashes.',
-    )
+    return jsonBadRequest(context, 'hashes must be an array of artifact hashes.')
   }
 
   const results: Record<string, ArtifactInfo | ArtifactError | null> = {}
@@ -286,10 +279,7 @@ function buildArtifactKey(query: QueryParams, hash: string): string {
   return `${scope}/${hash}`
 }
 
-function addArtifactHeaders(
-  headers: Headers,
-  metadata?: ArtifactMetadata,
-): void {
+function addArtifactHeaders(headers: Headers, metadata?: ArtifactMetadata): void {
   if (metadata?.duration) {
     headers.set('x-artifact-duration', metadata.duration)
   }
