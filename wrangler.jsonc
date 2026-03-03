@@ -25,13 +25,13 @@
   ],
   "r2_buckets": [
     {
-      "bucket_name": "turbo-remote-cache-staging",
+      "bucket_name": "turbo-remote-cache-development",
       "binding": "TURBO_CACHE_BUCKET"
     }
   ],
   "analytics_engine_datasets": [
     {
-      "dataset": "turbo-remote-cache-events-staging",
+      "dataset": "turbo-remote-cache-events-development",
       "binding": "TURBO_CACHE_ANALYTICS"
     }
   ],
