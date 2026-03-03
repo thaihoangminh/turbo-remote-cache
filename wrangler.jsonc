@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "vnp-turbo-cache",
+  "name": "turbo-remote-cache",
   "main": "src/index.ts",
   "compatibility_date": "2025-09-06",
   "compatibility_flags": [
